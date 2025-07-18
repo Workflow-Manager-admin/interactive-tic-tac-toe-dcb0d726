@@ -1,13 +1,12 @@
 /* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
+  /* Theme colors from requirements */
+  --primary: #1976d2;
+  --secondary: #424242;
+  --accent: #fbc02d;
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --text-primary: var(--secondary);
+  --border-color: #e0e0e0;
 }
 
 [data-theme="dark"] {
@@ -26,12 +25,95 @@
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.game-title {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.square {
+  aspect-ratio: 1;
+  background: var(--bg-primary);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.square:hover {
+  background: rgba(25, 118, 210, 0.1);
+}
+
+.square.x {
+  color: var(--primary);
+}
+
+.square.o {
+  color: var(--accent);
+}
+
+.game-status {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.reset-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-button:hover {
+  background-color: #1565c0;
+  transform: translateY(-2px);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .game-board {
+    max-width: 300px;
+  }
+  
+  .square {
+    font-size: 2rem;
+  }
+  
+  .game-title {
+    font-size: 2rem;
+  }
+  
+  .game-status {
+    font-size: 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
